@@ -17,6 +17,9 @@
 # Configuration for Linux on MIPS.
 # Included by combo/select.mk
 
+# ArchiDroid
+include $(BUILD_SYSTEM)/archidroid.mk
+
 # You can set TARGET_ARCH_VARIANT to use an arch version other
 # than mips32r2-fp. Each value should correspond to a file named
 # $(BUILD_COMBOS)/arch/<name>.mk which must contain
@@ -67,7 +70,7 @@ $(combo_2nd_arch_prefix)TARGET_STRIP := $($(combo_2nd_arch_prefix)TARGET_TOOLS_P
 
 $(combo_2nd_arch_prefix)TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-TARGET_mips_CFLAGS :=	-O2 \
+TARGET_mips_CFLAGS :=	$(ARCHIDROID_GCC_CFLAGS_OPTI) \
 			-fomit-frame-pointer \
 			-fno-strict-aliasing    \
 			-funswitch-loops
@@ -117,11 +120,15 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 # More flags/options can be added here
 $(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \
-			-g \
 			-Wstrict-aliasing=2 \
 			-fgcse-after-reload \
 			-frerun-cse-after-loop \
 			-frename-registers
+
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(ARCHIDROID_GCC_CFLAGS)
+#$(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(ARCHIDROID_GCC_CFLAGS_32)
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += $(ARCHIDROID_GCC_CPPFLAGS)
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += $(ARCHIDROID_GCC_LDFLAGS)
 
 libc_root := bionic/libc
 libm_root := bionic/libm

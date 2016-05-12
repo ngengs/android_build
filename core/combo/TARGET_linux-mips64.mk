@@ -17,6 +17,9 @@
 # Configuration for Linux on MIPS64.
 # Included by combo/select.mk
 
+# ArchiDroid
+include $(BUILD_SYSTEM)/archidroid.mk
+
 # You can set TARGET_ARCH_VARIANT to use an arch version other
 # than mips64r6. Each value should correspond to a file named
 # $(BUILD_COMBOS)/arch/<name>.mk which must contain
@@ -67,7 +70,7 @@ TARGET_STRIP := $(TARGET_TOOLS_PREFIX)strip$(HOST_EXECUTABLE_SUFFIX)
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-TARGET_mips_CFLAGS :=	-O2 \
+TARGET_mips_CFLAGS :=	$(ARCHIDROID_GCC_CFLAGS_OPTI) \
 			-fomit-frame-pointer \
 			-fno-strict-aliasing    \
 			-funswitch-loops
@@ -120,11 +123,15 @@ TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 # More flags/options can be added here
 TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \
-			-g \
 			-Wstrict-aliasing=2 \
 			-fgcse-after-reload \
 			-frerun-cse-after-loop \
 			-frename-registers
+
+TARGET_GLOBAL_CFLAGS += $(ARCHIDROID_GCC_CFLAGS)
+#TARGET_GLOBAL_CFLAGS += $(ARCHIDROID_GCC_CFLAGS_64)
+TARGET_GLOBAL_CPPFLAGS += $(ARCHIDROID_GCC_CPPFLAGS)
+TARGET_GLOBAL_LDFLAGS += $(ARCHIDROID_GCC_LDFLAGS)
 
 libc_root := bionic/libc
 libm_root := bionic/libm

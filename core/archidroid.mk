@@ -45,7 +45,8 @@ ARCHIDROID_GCC_LDFLAGS := -Wl,-O3 -Wl,--as-needed -Wl,--gc-sections -Wl,--relax 
 # Flags below are applied to specific targets only, use them if your flag is not compatible for both compilers
 
 # We use GCC 5.3 for arm-linux-androideabi, make sure to remove flags below if you decided to stick with 4.9
-ARCHIDROID_GCC_CFLAGS_32 := -Wno-error=bool-compare -Wno-error=logical-not-parentheses -Wno-error=sizeof-array-argument
+ARCHIDROID_GCC_CFLAGS_32 := 
+#-Wno-error=bool-compare -Wno-error=logical-not-parentheses -Wno-error=sizeof-array-argument
 
 # We use GCC 4.9 for aarch64-linux-android, so we don't have any extra flags for it
 ARCHIDROID_GCC_CFLAGS_64 := 

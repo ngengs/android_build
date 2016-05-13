@@ -142,4 +142,4 @@ ARCHIDROID_CLANG_UNKNOWN_FLAGS := \
 # However, if you use compiled recovery.img for your device, please disable this flag (comment or set to false), and lower
 # optimization levels instead, as you need to make sure that recovery.img fits prior to trying to flash it
 # Most (if not all) of the builders have no use of recovery.img, therefore this option is enabled by default
-ARCHIDROID_IGNORE_RECOVERY_SIZE := true
+ARCHIDROID_IGNORE_RECOVERY_SIZE := false
